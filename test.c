@@ -1,3 +1,7 @@
+#include <stdlib.h>
+#include <string.h>
+#include <stdio.h>
+
 int main () {
 
 	const int arraysize = 1000;
@@ -7,10 +11,10 @@ int main () {
 
 	memset(&A[0], 0, arraysize*sizeof(int));
 
-	for(int i=0; i<arraysize; i++) {
-		B[42] += A[i];		
+	for(int i=0; i<arraysize-4; i++) {
+		B[42] += A[i+2];
 	}
-	
-	printf("sum=%d\n", B[42]);	
+
+	printf("sum=%d\n", B[42]);
 
 }
