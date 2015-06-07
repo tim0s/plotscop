@@ -24,7 +24,7 @@ class JSCOPPlot:
 
 	def __init__(self, jscopstr):
 		self.ncols = 120    # output width in chars
-		self.speed = 50     # time in ms each state is shown
+		self.speed = 10     # time in ms each state is shown
 		self.memories = defaultdict(Memory)
 		self.statement_names = defaultdict(int)
 		self.statements = []
@@ -110,6 +110,7 @@ class JSCOPPlot:
 				print(cnt)
 				self.plot_step(cnt, statement.steps[step].accesses)
 				time.sleep(self.speed/1000)
+		self.clearscreen()
 
 	def add_access(self, access):
 		mem = self.memories[access.get_name()]

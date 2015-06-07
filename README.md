@@ -1,4 +1,4 @@
-== Plotscop ==
+# Plotscop
 
 The LLVM's polyhedral optimizer Polly has the ability to export static control
 parts (SCOPs) as JSON files. It can also import user modified SCOPs in the JSON
@@ -12,7 +12,7 @@ tool is to help you with that by creating a visual representation of the SCOP
 in the form of an animation that shows which memory locations are accessed at
 what time.
 
-== Example ==
+## Example
 
 This code
 
@@ -32,31 +32,31 @@ will produce the following JSCOP when compiled with a debug-build of llvm (if
 you use a regular release build the variable names are mostly replaced by
 numbers in order to save space, but it works the same way):
 
-{
-   "context" : "{  :  }",
-   "name" : "for.body => for.end",
-   "statements" : [
-      {
-         "accesses" : [
-            {
-               "kind" : "read",
-               "relation" : "{ Stmt_for_body[i0] -> MemRef_call[2 + i0] }"
-            },
-            {
-               "kind" : "read",
-               "relation" : "{ Stmt_for_body[i0] -> MemRef_call1[42] }"
-            },
-            {
-               "kind" : "write",
-               "relation" : "{ Stmt_for_body[i0] -> MemRef_call1[42] }"
-            }
-         ],
-         "domain" : "{ Stmt_for_body[i0] : i0 >= 0 and i0 <= 95 }",
-         "name" : "Stmt_for_body",
-         "schedule" : "{ Stmt_for_body[i0] -> [i0] : i0 >= 0 and i0 <= 95 }"
-      }
-   ]
-}
+    {
+       "context" : "{  :  }",
+       "name" : "for.body => for.end",
+       "statements" : [
+          {
+             "accesses" : [
+                {
+                   "kind" : "read",
+                   "relation" : "{ Stmt_for_body[i0] -> MemRef_call[2 + i0] }"
+                },
+                {
+                   "kind" : "read",
+                   "relation" : "{ Stmt_for_body[i0] -> MemRef_call1[42] }"
+                },
+                {
+                   "kind" : "write",
+                   "relation" : "{ Stmt_for_body[i0] -> MemRef_call1[42] }"
+                }
+             ],
+             "domain" : "{ Stmt_for_body[i0] : i0 >= 0 and i0 <= 95 }",
+             "name" : "Stmt_for_body",
+             "schedule" : "{ Stmt_for_body[i0] -> [i0] : i0 >= 0 and i0 <= 95 }"
+          }
+       ]
+    }
 
 You can visualize this as an ASCII art animation with 
     ./plotscop pollyoutput.jscop
